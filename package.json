@@ -1,0 +1,24 @@
+{
+  "name": "twitter-timeline-bot",
+  "version": "1.0.0",
+  "description": "get twitter's timeline",
+  "main": "index.js",
+  "author": "Kohei Ozeki <K.odeveloper10@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "webpack --mode=development",
+    "start": "webpack-dev-server --mode=development",
+    "prd": "webpack --mode=production"
+  },
+  "dependencies": {
+    "@types/node": "^10.12.2",
+    "dotenv": "^6.1.0",
+    "ts-loader": "^5.3.0",
+    "twitter": "^1.7.1",
+    "typescript": "^3.1.6",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
