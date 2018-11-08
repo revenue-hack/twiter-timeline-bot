@@ -7,8 +7,17 @@ var client = new twitter({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET,
 });
 
+const filterTweets = (tweet, filterJson) => {
+  const users = filterJson.users;
+  const userResult = users.filter(user => user === tweet.user);
+  if (userResult.length > 0) return true;
 
-const getTweets = () => {
+  const words = filterJson.words;
+  const wordResult = words.filter(word => tweet.text.indexOf(word) > -1 || tweet.text.indexOf(word.toLowerCase()) > -1 || tweet.text.indexOf(word.toUpperCase()) > -1);
+  return wordResult.length > 0;
+}
+
+const getTweets = (filterJson) => {
   const params = {
     screen_name: 'Twitter',
     count: 10,
@@ -19,7 +28,9 @@ const getTweets = () => {
   client.get('statuses/home_timeline', params, (err, tweets, res) => {
     if (!err) {
       for (let i = 0; i < tweets.length; i++) {
-        console.log(tweets[i].text);
+        if (filterTweets(tweets[i], filterJson)) {
+          console.log(tweets[i])
+        }
       }
     } else {
       console.log(err);
@@ -27,4 +38,7 @@ const getTweets = () => {
   });
 }
 
-getTweets();
+const filterJson = require('./word_store.json');
+
+getTweets(filterJson);
+
