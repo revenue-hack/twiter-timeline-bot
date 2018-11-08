@@ -30,5 +30,3 @@ findTweets(filterJson).then((filterdTweets) => {
   console.log(err);
 });
 
-
-
