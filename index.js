@@ -1,3 +1,5 @@
+const botkit = require("botkit");
+const sprintf = require('sprintf-js').sprintf;
 require('dotenv').config();
 const twitter = require('twitter');
 var client = new twitter({
@@ -20,25 +22,53 @@ const filterTweets = (tweet, filterJson) => {
 const getTweets = (filterJson) => {
   const params = {
     screen_name: 'Twitter',
-    count: 10,
+    count: 100,
     include_rts: true,
     exclude_replies: true
   };
 
-  client.get('statuses/home_timeline', params, (err, tweets, res) => {
+  return client.get('statuses/home_timeline', params, (err, tweets, res) => {
     if (!err) {
+      var filterdTweets = [];
       for (let i = 0; i < tweets.length; i++) {
+        console.log("２２ほほほ", filterTweets(tweets[i], filterJson));
         if (filterTweets(tweets[i], filterJson)) {
-          console.log(tweets[i])
+          console.log("あああああ", tweets[i].text);
+          filterdTweets.push(tweets[i]);
         }
       }
+      console.log("フィルター", filterdTweets);
+      return filterdTweets;
     } else {
       console.log(err);
+      return null;
     }
   });
 }
 
 const filterJson = require('./word_store.json');
 
-getTweets(filterJson);
+
+const controller = botkit.slackbot({
+    debug: true,
+});
+
+controller.spawn({ token: process.env.BOT_ACCESS_KEY }).startRTM((err, bot, payload) => {
+    if (err) {
+        throw new Error(err);
+    }
+});
+
+
+controller.hears(["ネタある？"], ["direct_mention"], (bot, message) => {
+  const tweets = getTweets(filterJson);
+  console.log("ツイート", tweets);
+  if (tweets) {
+    var messages = "";
+    tweets.forEach((tweet) => {
+      messages += sprintf("%s: %s\n", tweet.user, tweet.text)
+    });
+    bot.reply(message, tweets);
+  } else bot.reply(message, "今はないな～");
+});
 
