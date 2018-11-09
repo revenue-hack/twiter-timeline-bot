@@ -6,9 +6,9 @@ yarn install
 ```
 
 ## desc
-slack incoming hook's code is income.js.
-cloud function's code is index.js, so I use serverless framework.
-slack bot's code is bot.js.
+slack incoming hook's code is income.js.  
+cloud function's code is index.js, so I use serverless framework.  
+slack bot's code is bot.js.  
 
 ## batch incoming
 https://cron-job.org
