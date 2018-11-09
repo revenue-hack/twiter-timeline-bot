@@ -3,7 +3,7 @@ const { findTweets, filterJson } = require('./common.js');
 const request = require('request');
 const sprintf = require('sprintf-js').sprintf;
 
-findTweets(filterJson).then((filterdTweets) => {
+module.exports.tweets = () => findTweets(filterJson).then((filterdTweets) => {
   var sendMessage = "";
   if (filterdTweets) {
     filterdTweets.forEach((tweet) => {

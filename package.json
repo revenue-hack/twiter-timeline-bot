@@ -7,14 +7,13 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "webpack --mode=development",
-    "start": "webpack-dev-server --mode=development",
-    "prd": "webpack --mode=production"
+    "tweet": "node income.js"
   },
   "dependencies": {
     "botkit": "^0.6.20",
     "dotenv": "^6.1.0",
     "sprintf-js": "^1.1.1",
-    "twitter": "^1.7.1"
+    "twitter": "^1.7.1",
+    "serverless-google-cloudfunctions": "^1.1.0"
   }
 }

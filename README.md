@@ -12,7 +12,7 @@ cron */10 * * * * node income.js
 ```
 ## bot
 ```
-node index.js
+node bot.js
 ```
 write to slack
 @bot ネタある？ or hoge
