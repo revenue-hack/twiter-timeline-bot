@@ -12,7 +12,7 @@
     "mongo",
     "mysql",
     "データベース",
-    "情報",
+    "db",
     "engineer",
     "posgre",
     "ネットワーク",
@@ -33,6 +33,11 @@
   ],
   "users": [
     "yosuke_furukawa",
-    "jptechcrunch"
+    "jptechcrunch",
+    "yanzm",
+    "kensuu",
+    "zaru",
+    "TechCrunch",
+    "mattn_jp"
   ]
 }
