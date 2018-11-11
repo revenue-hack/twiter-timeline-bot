@@ -7,7 +7,7 @@ module.exports.tweets = () => findTweets(filterJson).then((filterdTweets) => {
   var sendMessage = "";
   if (filterdTweets) {
     filterdTweets.forEach((tweet) => {
-      sendMessage += sprintf("%s: %\n\n", tweet.user, tweet.text)
+      sendMessage += sprintf("%s: %s\n\n", tweet.user, tweet.text);
     });
 
     request.post({
